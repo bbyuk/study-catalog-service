@@ -24,7 +24,7 @@ public class BookValidationTests {
     @Test
     @DisplayName("유효한 ISBN으로 책을 생성한다.")
     void whenAllFieldsCorrectThenValidationSucceeds() {
-        var book = new Book("1234567890", "Title", "Author", 9.90);
+        var book = Book.of("1234567890", "Title", "Author", 9.90);
         Set<ConstraintViolation<Book>> violation = validator.validate(book);
         Assertions.assertThat(violation).isEmpty();
     }
@@ -32,7 +32,7 @@ public class BookValidationTests {
     @Test
     @DisplayName("유효하지 않은 ISBN코드로 책을 생성한다.")
     void whenIsbnDefinedButIncorrectThenValidationFails() {
-        var book = new Book("a234567890", "Title", "Author", 9.90);
+        var book = Book.of("a234567890", "Title", "Author", 9.90);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
 
         Assertions.assertThat(violations).hasSize(1);

@@ -23,7 +23,7 @@ class CatalogServiceApplicationTests {
     @Test
     @DisplayName("POST 요청이 들어왔을 때 책이 생성된다.")
     void whenPostRequestThenBookCreated() {
-        var expectedBook = new Book("1231231231", "Title", "Author", 9.90);
+        var expectedBook = Book.of("1231231231", "Title", "Author", 9.90);
 
         webTestClient
                 .post()
